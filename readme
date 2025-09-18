@@ -1,0 +1,8 @@
+Gunakan go mod init diikuti dengan module path (biasanya nama repo GitHub, atau bebas kalau lokal saja):
+
+go mod init github.com/username/myproject
+
+
+Kalau cuma lokal (belum upload ke GitHub), bisa pakai nama sederhana:
+
+go mod init myproject
