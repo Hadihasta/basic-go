@@ -164,11 +164,60 @@ func main() {
 		fmt.Println("selain ini 4")
 	}
 
-
 	// if short statement
 	if length := len(myNames); length > 5 {
-			fmt.Println("name length" , length)
-	}else { 
-			fmt.Println("name here dibawah 5 characther" )
+		fmt.Println("name length", length)
+	} else {
+		fmt.Println("name here dibawah 5 characther")
 	}
+
+	// switch
+	nameSwitch := "hadi"
+
+	switch nameSwitch {
+	case "nadi":
+		fmt.Println("nadi")
+	case "nodi":
+		fmt.Println("nodi")
+	default:
+
+		fmt.Println("not nodi & nadi")
+
+	}
+
+	// short statement switch
+	switch length := len(nameSwitch); length > 5 {
+	case true:
+		fmt.Println("lebih dari 5")
+	case false:
+		fmt.Println("kurang dari 5")
+	}
+
+	// for loop
+	count := 5
+	for i := 0; i < count; i++ {
+		fmt.Println("ulang sebanyak count")
+	}
+
+	for count < 5 {
+		fmt.Println("kurang dari 5")
+	}
+
+	// for range
+	//  arti dari code di bawah ini adalah declare data for range dengan data array yang belum ditentukan isinya berapa tergantung yang di sign di dalam array
+	dataForRange := []string{"hadi","hasta","nama"}
+	// jika i lebih kecil dari panjang index yang ada dalam dataforRange 
+	for i:= 0; i < len(dataForRange); i++{
+		// cetak data for range index ke i 
+		fmt.Println(dataForRange[i])
+
+		for index, dataForRange := range dataForRange{
+			fmt.Println("index", index, "=", dataForRange , " >>>>> ")
+		}
+		// kalau gak butuh index bisa di jadiin _ aja
+		for index, dataForRange := range dataForRange {
+			fmt.Println(dataForRange, index , " <<< ")
+		}
+	}
+
 }
