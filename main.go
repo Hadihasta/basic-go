@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func print() {
 	fmt.Println("new learning")
@@ -12,12 +14,10 @@ func main() {
 	name = "minez"
 	fmt.Println(name)
 
-
 	var kendaraan = "motor"
 	fmt.Println(kendaraan)
 
-	
-	// famouse declare 
+	// famouse declare
 	a := "first declare"
 
 	a = "second declare"
@@ -25,20 +25,18 @@ func main() {
 
 	// multiple declare
 	var (
-		firstName = "minez"
+		firstName  = "minez"
 		secondName = "zota"
-		thirdName = "enedi"
+		thirdName  = "enedi"
 	)
 
-		fmt.Println(firstName, secondName, thirdName)
-
+	fmt.Println(firstName, secondName, thirdName)
 
 	// const if not use no error but cannot re-declare
 	const newName string = "hadi"
 	const lastName = "asta"
 
-
-	// Data type conversion 
+	// Data type conversion
 
 	var nilai32 int32 = 3232
 	var nilai64 int64 = int64(nilai32)
@@ -46,9 +44,9 @@ func main() {
 	fmt.Println(nilai64)
 
 	var newDataName = "haru"
-	var e = newDataName[0] // 104 outputnya 
+	var e = newDataName[0] // 104 outputnya
 	var eString = string(e)
-		fmt.Println(eString, " <<< ") // output : h
+	fmt.Println(eString, " <<< ") // output : h
 
 	type NoKTP string
 
@@ -56,14 +54,13 @@ func main() {
 
 	fmt.Println(ktpHadi)
 
-	var i = 10 
+	var i = 10
 	i += 10
 	i++
 	fmt.Println(i)
 
-
 	//====> condition
-	
+
 	var name1 = "woila"
 	var name2 = "woila"
 
@@ -71,34 +68,107 @@ func main() {
 
 	fmt.Println(result)
 
-		//====> array dibatasin 3 
-	var array1  [3]string 
+	//====> array dibatasin 3
+	var array1 [3]string
 	array1[0] = "nada"
 	array1[1] = "nadi"
 	array1[2] = "nudu"
-		
 
 	fmt.Println(array1)
 
-
-
 	var arrayDirect = [3]int{
-		22,33,33,
+		22, 33, 33,
 	}
-	
+
 	fmt.Println(arrayDirect)
 
-	//====> array method / function 
+	//====> array method / function
 
-	// array harus di declare langsung kalau tidak mau ada batasan index array 
+	// array harus di declare langsung kalau tidak mau ada batasan index array
 	// mau berapapun di isi ini bisa tapi kalau tidak di isi maka array isinya kosong
-	var values = [...]int{ 
-		22,33,44,22,11,
+	var values = [...]int{
+		22, 33, 44, 22, 11,
 	}
 	fmt.Println(values)
+	// tidak ada function untuk menghapus index dalam array seperti javascript
+
+	// data type slice dan sering sekali dipakai karena ukuran slice dapat berubah
+	// cara kerja :
+	// ketika slice memanage array , dan ketika penuh maka akan dipindahkan ke array baru
+	var names = [...]string{
+		"hadi",
+		"asta",
+		"budi",
+		"andi",
+		"tami",
+	}
+	slice := names[2:4] // dimulai dari array index ke 2 dan berakhir di index 4 kalau mau ambil semua kosongkan saja cth : names[:]
+
+	fmt.Println(slice)
+
+	// cek lenth array
+	lenghtSlice := len(slice)
+
+	fmt.Println(lenghtSlice)
+	// check capacity array
+	capSlice := cap(slice)
+	fmt.Println(capSlice)
+
+	// method atau function slice banyak mangkanya enak untuk di pakai  ada
+	// append(slice,data)  buat slice baru dengan menambahkan di posisi terakhir
+	//  make([]typedata, length, capacity) buat slice baru
+	//  copy(destination , source) saling dari source
+
+	// dataType Map
+	dataMap := map[string]string{
+		"name":    "hadi",
+		"kelas":   "12",
+		"address": "jalan",
+	}
+	// akses value dengan key
+	fmt.Println(dataMap["name"])
+	// akses semua yang ada pada map
+	fmt.Println(dataMap)
+
+	// function / method map ada banyak
+	// make new map with method "make"
+	newDataMap := make(map[string]string)
+
+	newDataMap["title"] = "new journey"
+	newDataMap["book"] = "new book"
+	newDataMap["schedule"] = "new schedule"
+	// delete by title
+	delete(newDataMap, "book")
+	fmt.Println(newDataMap)
+
+	// if condition
+	myNames := "nageeeeeeeeee"
+
+	if myNames == "hadi" {
+		fmt.Println("nama kamu hadi")
+	}
+	// if else
+	if myNames == "naga" {
+		fmt.Println("asta")
+	} else {
+		fmt.Println("selain asta")
+	}
+	// else if
+	if myNames == "nage" {
+		fmt.Println("1")
+	} else if myNames == "nagu" {
+		fmt.Println("2")
+	} else if myNames == "nagi" {
+		fmt.Println("3")
+	} else {
+		fmt.Println("selain ini 4")
+	}
 
 
-	} 
-
-	
-
+	// if short statement
+	if length := len(myNames); length > 5 {
+			fmt.Println("name length" , length)
+	}else { 
+			fmt.Println("name here dibawah 5 characther" )
+	}
+}
