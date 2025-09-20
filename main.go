@@ -4,13 +4,16 @@ import (
 	"fmt"
 )
 
-func print() {
+func print(firstName string,lastName string ) {
 	fmt.Println("new learning")
 	fmt.Println(len("Learn"))
+	fmt.Println(firstName, lastName)
 }
 
-func main() {
-	var name string
+
+
+func basicKnowledge() {
+		var name string
 	name = "minez"
 	fmt.Println(name)
 
@@ -205,19 +208,64 @@ func main() {
 
 	// for range
 	//  arti dari code di bawah ini adalah declare data for range dengan data array yang belum ditentukan isinya berapa tergantung yang di sign di dalam array
-	dataForRange := []string{"hadi","hasta","nama"}
-	// jika i lebih kecil dari panjang index yang ada dalam dataforRange 
-	for i:= 0; i < len(dataForRange); i++{
-		// cetak data for range index ke i 
+	dataForRange := []string{"hadi", "hasta", "nama"}
+	// jika i lebih kecil dari panjang index yang ada dalam dataforRange
+	for i := 0; i < len(dataForRange); i++ {
+		// cetak data for range index ke i
 		fmt.Println(dataForRange[i])
 
-		for index, dataForRange := range dataForRange{
-			fmt.Println("index", index, "=", dataForRange , " >>>>> ")
+		for index, dataForRange := range dataForRange {
+			fmt.Println("index", index, "=", dataForRange, " >>>>> ")
 		}
 		// kalau gak butuh index bisa di jadiin _ aja
 		for index, dataForRange := range dataForRange {
-			fmt.Println(dataForRange, index , " <<< ")
+			fmt.Println(dataForRange, index, " <<< ")
+		}
+
+		// break
+
+		for i := 0; i < 5; i++ {
+			if i == 2 {
+				break
+			}
+			fmt.Println("counting ", i)
 		}
 	}
 
+	// continue
+	for i := 0; i < 10; i++{
+		if i%2  == 0 {
+			// fmt.Println("ini i ke", i)
+			continue
+		}
+		// fmt.Println("ini i ke woow", i)
+	}
+
+
+}
+
+
+// test return function
+func returnString(kata string)string { 
+	hello := "halo " + kata
+	return hello
+}
+
+func multipleString() (string, string) { 
+	return "hadi", "hasta"
+}
+
+func main() {
+	// basicKnowledge()
+	// print("hadi", "hasta")
+
+
+	// ambil data dari function returnString
+	result := returnString("hadi")
+	fmt.Println(result)
+
+	// kalau tidak mau di pakai ganti parameter dengan _
+	// first, _ := multipleString()
+	first, second := multipleString()
+	fmt.Println(first, second)
 }
