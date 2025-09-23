@@ -4,16 +4,14 @@ import (
 	"fmt"
 )
 
-func print(firstName string,lastName string ) {
+func print(firstName string, lastName string) {
 	fmt.Println("new learning")
 	fmt.Println(len("Learn"))
 	fmt.Println(firstName, lastName)
 }
 
-
-
 func basicKnowledge() {
-		var name string
+	var name string
 	name = "minez"
 	fmt.Println(name)
 
@@ -233,32 +231,34 @@ func basicKnowledge() {
 	}
 
 	// continue
-	for i := 0; i < 10; i++{
-		if i%2  == 0 {
+	for i := 0; i < 10; i++ {
+		if i%2 == 0 {
 			// fmt.Println("ini i ke", i)
 			continue
 		}
 		// fmt.Println("ini i ke woow", i)
 	}
 
-
 }
 
-
 // test return function
-func returnString(kata string)string { 
+func returnString(kata string) string {
 	hello := "halo " + kata
 	return hello
 }
 
-func multipleString() (string, string) { 
+func multipleString() (string, string) {
 	return "hadi", "hasta"
 }
+
+func getCompleteDeclaration() (string, string, string) {
+    return "hadi", "hadi", "hadi"
+}
+
 
 func main() {
 	// basicKnowledge()
 	// print("hadi", "hasta")
-
 
 	// ambil data dari function returnString
 	result := returnString("hadi")
@@ -268,4 +268,7 @@ func main() {
 	// first, _ := multipleString()
 	first, second := multipleString()
 	fmt.Println(first, second)
+
+ a, b, c := getCompleteDeclaration()
+ fmt.Println( a, b, c )
 }
