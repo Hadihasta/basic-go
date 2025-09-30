@@ -251,8 +251,12 @@ func multipleString() (string, string) {
 	return "hadi", "hasta"
 }
 
-func getCompleteDeclaration() (string, string, string) {
-    return "hadi", "hadi", "hadi"
+func getCompleteDeclaration() (firstName string,middleName string,lastName string) {
+	// jika tidak di declare maka akan default string kosong 
+	firstName = "hadi"
+	// middleName = "hijri"
+	lastName = "aaa"
+    return  firstName, middleName,lastName
 }
 
 
