@@ -251,16 +251,73 @@ func multipleString() (string, string) {
 	return "hadi", "hasta"
 }
 
-func getCompleteDeclaration() (firstName string,middleName string,lastName string) {
-	// jika tidak di declare maka akan default string kosong 
+func getCompleteDeclaration() (firstName string, middleName string, lastName string) {
+	// jika tidak di declare maka akan default string kosong
 	firstName = "hadi"
 	// middleName = "hijri"
 	lastName = "aaa"
-    return  firstName, middleName,lastName
+	return firstName, middleName, lastName
 }
 
+// variadic function
+func sumAll(numbers ...int) int {
+	total := 0
+
+	for _, number := range numbers {
+		total += number
+	}
+
+	return total
+}
+
+func getGoodbye(name string) string {
+	return "good bye" + name
+}
+
+// type declaration
+type Filter func(string) string
+
+// type bisa di pisah seperti ini deklarasinya
+func sayHelloWithFilter(name string, filter Filter) {
+	filteredName := filter(name)
+	fmt.Println("hello", filteredName)
+}
+
+func spamFilter(name string) string {
+	if name == "anjing" {
+		return "...."
+	} else {
+		return name
+	}
+}
+
+type Blacklist func(string) bool
+
+func registerUser(name string, blacklist Blacklist) {
+	if blacklist(name) {
+		fmt.Println("You Are blocked", name)
+	} else {
+		fmt.Println("welcome", name)
+	}
+}
 
 func main() {
+
+	filter := spamFilter
+	sayHelloWithFilter("anjing", filter)
+
+
+	// anonymous function
+	blacklist := func(name string)bool {
+		return name == "anjing"	
+	}
+
+	registerUser("hadi", blacklist)
+
+	registerUser("anjing",func(name string)bool{
+		return name =="anjing"
+	})
+
 	// basicKnowledge()
 	// print("hadi", "hasta")
 
@@ -273,6 +330,26 @@ func main() {
 	first, second := multipleString()
 	fmt.Println(first, second)
 
- a, b, c := getCompleteDeclaration()
- fmt.Println( a, b, c )
+	a, b, c := getCompleteDeclaration()
+	fmt.Println(a, b, c)
+
+	//  mending pakai variadic karna kalau pakai slice kurang simple
+	// []int{10,10,10,10,10,10} ====> harus dikasi array
+	fmt.Println(sumAll(10, 10, 10, 10, 10, 10, 10))
+	// kalau misal udah kelanjur ada data yang awalnnya slice bisa juga
+	numbers := []int{10, 10, 10, 10, 10}
+	// harus dikasi ... karena kalau tidak dianggap yang dikirim satu data
+	fmt.Println((sumAll(numbers...)))
+
+	// function dapat dijadikan data type
+	// kalau mau diambil value dari functionnya jangan pakai kurung buka tutup "()"
+	goodbye := getGoodbye
+	fmt.Println(goodbye("hadi"))
+
+	// function as parimeter
+
+	sayHelloWithFilter("hadi", spamFilter)
+
+
+
 }
