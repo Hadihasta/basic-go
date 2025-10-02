@@ -340,14 +340,47 @@ func tryClosur() {
 
 }
 
-func main() {
+func logging() {
+	fmt.Println("selesai")
+}
 
-	tryClosur()
+
+// defer = diakhir function akan eksekusi logging
+func runApplication() {
+	defer logging()
+	fmt.Println("run application")
+}
+
+
+func endApp() { 
+	fmt.Println("end app")
+	// kalau mau jika panic dan jangan berhenti dulu bisa di pangil recover  bisa di ambil message panicnya
+	message := recover()
+	fmt.Println("terjadi panic", message, "aa")
+}
+// panic 
+// meskipun error defer terap akan di panggil 
+func runApp(error bool){ 
+	defer endApp()
+	if error {
+	panic("ups error")
+}
+}
+
+
+
+
+func main() {
+	// kalau true maka akan error 
+	runApp(true)
+
+	// runApplication()
+	// tryClosur()
 	fmt.Println(factorialLoop((10)))
 	fmt.Println(factorialLoopRecursive((10)))
 
-	filter := spamFilter
-	sayHelloWithFilter("anjing", filter)
+	// filter := spamFilter
+	// sayHelloWithFilter("anjing", filter)
 
 	// anonymous function
 	blacklist := func(name string) bool {
