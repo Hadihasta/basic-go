@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 )
 
@@ -344,34 +345,91 @@ func logging() {
 	fmt.Println("selesai")
 }
 
-
 // defer = diakhir function akan eksekusi logging
 func runApplication() {
 	defer logging()
 	fmt.Println("run application")
 }
 
-
-func endApp() { 
+func endApp() {
 	fmt.Println("end app")
 	// kalau mau jika panic dan jangan berhenti dulu bisa di pangil recover  bisa di ambil message panicnya
 	message := recover()
 	fmt.Println("terjadi panic", message, "aa")
 }
-// panic 
-// meskipun error defer terap akan di panggil 
-func runApp(error bool){ 
+
+// panic
+// meskipun error defer terap akan di panggil
+func runApp(error bool) {
 	defer endApp()
 	if error {
-	panic("ups error")
+		panic("ups error")
+	}
 }
+
+// custom error
+func pembagian(nilai int, pembagi int) (int, error) {
+	if pembagi == 0 {
+		return 0, errors.New("pembagian dengan nol")
+	} else {
+		return nilai / pembagi, nil
+	}
 }
 
+type validationError struct {
+	Message string
+}
 
+func (v *validationError) Error() string {
+	return v.Message
+}
 
+type notFoundError struct {
+	Message string
+}
+
+func (n *notFoundError) Error() string {
+	return n.Message
+}
+
+func SaveData(id string, data any) error {
+	if id == "" {
+		return &validationError{"validation error"}
+	}
+
+	if id != "hadi" {
+		return &notFoundError{"data not found"}
+	}
+	// ok
+	return nil
+}
 
 func main() {
-	// kalau true maka akan error 
+
+	err := SaveData("hadi", nil)
+	if err != nil {
+		// terjadi error
+		if validationErr, ok := err.(*validationError); ok {
+			fmt.Println("validation error:", validationErr.Error())
+		} else if notFoundErr, ok := err.(*notFoundError); ok {
+			fmt.Println("NOT FOUND ERROR", notFoundErr.Error())
+
+		} else {
+			fmt.Println("uknown error", err.Error())
+		}
+	} else {
+		// sukses
+		fmt.Println("sukses")
+	}
+
+	hasil, err := pembagian(100, 0)
+	if err == nil {
+		fmt.Println("hasil", hasil)
+	} else {
+		fmt.Println("error", err.Error())
+	}
+
+	// kalau true maka akan error
 	runApp(true)
 
 	// runApplication()
