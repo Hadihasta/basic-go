@@ -299,23 +299,65 @@ func registerUser(name string, blacklist Blacklist) {
 	} else {
 		fmt.Println("welcome", name)
 	}
+
+	// factorial loop
+
+}
+
+func factorialLoop(value int) int {
+
+	result := 1
+	for i := value; i > 0; i-- {
+		result *= i
+	}
+
+	return result
+}
+
+func factorialLoopRecursive(value int) int {
+
+	if value == 1 {
+		return 1
+	} else {
+		return value * factorialLoopRecursive((value - 1))
+	}
+
+}
+
+// closur function
+func tryClosur() {
+	counter := 0
+
+	increment := func() {
+		fmt.Println("increment")
+		counter++
+	}
+
+	increment()
+	increment()
+	increment()
+	fmt.Println(counter)
+
 }
 
 func main() {
 
+	tryClosur()
+	fmt.Println(factorialLoop((10)))
+	fmt.Println(factorialLoopRecursive((10)))
+
 	filter := spamFilter
 	sayHelloWithFilter("anjing", filter)
 
-
 	// anonymous function
-	blacklist := func(name string)bool {
-		return name == "anjing"	
+	blacklist := func(name string) bool {
+		return name == "anjing"
 	}
 
 	registerUser("hadi", blacklist)
 
-	registerUser("anjing",func(name string)bool{
-		return name =="anjing"
+	registerUser("anjing", func(name string) bool {
+		return name == "anjing"
 	})
 
 	// basicKnowledge()
@@ -349,7 +391,5 @@ func main() {
 	// function as parimeter
 
 	sayHelloWithFilter("hadi", spamFilter)
-
-
 
 }
